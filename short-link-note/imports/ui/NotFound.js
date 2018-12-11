@@ -1,7 +1,18 @@
 import React from "react";
+import { browserHistory } from "react-router";
 
-export default class NotFound extends React.Component {
-  render() {
-    return <p>NotFound component here</p>;
-  }
-}
+const NotFound = () => {
+  return (
+    <div>
+      <p>NotFound component here</p>
+      <button
+        onClick={() => {
+          browserHistory.replace("/");
+        }}
+      >
+        Presione aqui para volver al inicio
+      </button>
+    </div>
+  );
+};
+export default NotFound;

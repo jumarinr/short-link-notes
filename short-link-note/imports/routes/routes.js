@@ -29,6 +29,7 @@ const onError = () => {
     }
   }, 4000);
 };
+
 export const onAuthChange = isAuthentiated => {
   const pathname = browserHistory.getCurrentLocation().pathname;
   const isUnauthentiatedPage = unauthenticatedPages.includes(pathname);

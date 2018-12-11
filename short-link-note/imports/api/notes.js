@@ -7,3 +7,11 @@ if (Meteor.isServer) {
     return Notes.find({ userId: this.userId });
   });
 }
+Meteor.methods({
+  "notes.insert"(notes) {
+    if (!this.userId) {
+      throw new Meteor.Error("No autorizado");
+    }
+    Notes.insert({ notes, userId: this.userId });
+  }
+});

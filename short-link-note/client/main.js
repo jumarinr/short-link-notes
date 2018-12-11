@@ -3,6 +3,7 @@ import { Tracker } from "meteor/tracker"; //importamos tracker, lo requerimos pa
 import ReactDOM from "react-dom"; //importamos ReactDOM, lo requerimos para render
 
 import { routes, onAuthChange } from "../imports/routes/routes"; //importamos routes, que es donde estan los links de direccion y onAuthChange que es para verificar que los enlaces en la pagina esten bien para redirrecionar
+import "../imports/startup/simple-schema-configuration";
 
 //Con Tracker.autorun nos aseguramos que siempre se refresque la informacion
 Tracker.autorun(() => {
@@ -11,8 +12,5 @@ Tracker.autorun(() => {
 });
 
 Meteor.startup(() => {
-  Meteor.call("addNumbers", 11, "187", (err, res) => {
-    console.log("greet user arguments", err, res);
-  });
   ReactDOM.render(routes, document.getElementById("app"));
 });
