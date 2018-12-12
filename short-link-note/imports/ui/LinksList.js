@@ -3,6 +3,7 @@ import { Meteor } from "meteor/meteor";
 import { Links } from "../api/links"; //importamos la coleccion Links
 import { Tracker } from "meteor/tracker"; //importamos tracker, lo requerimos para autorun
 import LinksListItem from "./LinksListItem";
+import { Session } from "meteor/session";
 
 export default class LinksList extends React.Component {
   constructor(props) {
@@ -16,7 +17,7 @@ export default class LinksList extends React.Component {
     this.linksTracker = Tracker.autorun(() => {
       Meteor.subscribe("links");
       //llamamos una constante links asociada a nuestra coleccion Links
-      const links = Links.find({}).fetch();
+      const links = Links.find({ visible: Session.get("showVisible") }).fetch();
       this.setState({ links });
     });
   }

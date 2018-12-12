@@ -5,8 +5,12 @@ import "../imports/api/links";
 import "../imports/api/notes";
 import "../imports/startup/simple-schema-configuration";
 import { Links } from "../imports/api/links";
+import moment from "moment";
 
 Meteor.startup(() => {
+  let now = moment();
+  console.log(now.format("MMM Do, YYYY k:mma"));
+
   WebApp.connectHandlers.use((req, res, next) => {
     const _id = req.url.slice(1);
     const link = Links.findOne({ _id });
@@ -15,6 +19,7 @@ Meteor.startup(() => {
       res.statusCode = 302;
       res.setHeader("Location", link.url);
       res.end();
+      Meteor.call("links.trackVisit", _id);
     } else {
       next();
     }

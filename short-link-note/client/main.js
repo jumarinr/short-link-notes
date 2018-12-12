@@ -1,6 +1,7 @@
 import { Meteor } from "meteor/meteor"; //Importamos meteor, lo requerimos para startup
 import { Tracker } from "meteor/tracker"; //importamos tracker, lo requerimos para autorun
 import ReactDOM from "react-dom"; //importamos ReactDOM, lo requerimos para render
+import { Session } from "meteor/session";
 
 import { routes, onAuthChange } from "../imports/routes/routes"; //importamos routes, que es donde estan los links de direccion y onAuthChange que es para verificar que los enlaces en la pagina esten bien para redirrecionar
 import "../imports/startup/simple-schema-configuration";
@@ -12,5 +13,6 @@ Tracker.autorun(() => {
 });
 
 Meteor.startup(() => {
+  Session.set("showVisible", true);
   ReactDOM.render(routes, document.getElementById("app"));
 });
