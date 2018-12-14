@@ -32,7 +32,7 @@ export default class LinksListFilter extends React.Component {
               Session.set("showVisible", !event.target.checked);
             }}
           />
-          Show hidden links
+          Mostrar links ocultos
         </label>
       </div>
     );

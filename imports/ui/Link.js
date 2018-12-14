@@ -11,7 +11,7 @@ import LinksListFilter from "./LinksListFilter";
 export default () => {
   return (
     <div>
-      <PrivateHeader title="Your Staff" />
+      <PrivateHeader title="Tus Links" />
       <div className="page-content">
         <LinksListFilter />
         <AddLink />

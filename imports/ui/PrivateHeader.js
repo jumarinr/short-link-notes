@@ -12,7 +12,7 @@ const PrivateHeader = props => {
             Accounts.logout();
           }}
         >
-          LogOut
+          Salir
         </button>
       </div>
     </div>

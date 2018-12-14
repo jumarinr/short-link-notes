@@ -54,14 +54,14 @@ export default class LinksListItem extends React.Component {
           style={{ textDecoration: "none", textDecorationColor: "#000000" }}
         >
           {" "}
-          Visit
+          Visitar
         </a>
         <button
           className="button button--pill"
           ref="copy"
           data-clipboard-text={this.props.url}
         >
-          {this.state.justCopied ? "Copied" : "Copy"}{" "}
+          {this.state.justCopied ? "Copiado" : "Copiar"}{" "}
           {/*, el primer argumento
             es lo que pasa si es verdadero, el segundo si es falso */}
         </button>
@@ -75,7 +75,7 @@ export default class LinksListItem extends React.Component {
             );
           }}
         >
-          {this.props.visible ? "Hide" : "Unhide"}
+          {this.props.visible ? "Ocultar" : "Desocultar"}
         </button>
       </div>
     );

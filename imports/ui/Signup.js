@@ -17,7 +17,7 @@ export default class Signup extends React.Component {
 
     if (password.length < 9) {
       return this.setState({
-        error: "password must be more than 8 characters long"
+        error: "La contraseña debe ser de minimo 8 caracteres"
       });
     }
 
@@ -33,7 +33,7 @@ export default class Signup extends React.Component {
     return (
       <div className="boxed-view">
         <div className="boxed-view__box">
-          <h1>Singup component here</h1>
+          <h1>Registro nuevos usuarios</h1>
 
           {this.state.error ? <p>{this.state.error}</p> : undefined}
 
@@ -47,11 +47,11 @@ export default class Signup extends React.Component {
               ref="password"
               type="password"
               name="password"
-              placeholder="Password"
+              placeholder="Contraseña"
             />
-            <button className="button"> Create Account</button>
+            <button className="button">Crear cuenta</button>
 
-            <Link to="/">Already have an acount? </Link>
+            <Link to="/"> ¿Ya tienes una cuenta?</Link>
           </form>
         </div>
       </div>
