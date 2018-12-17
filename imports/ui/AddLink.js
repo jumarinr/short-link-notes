@@ -1,9 +1,9 @@
 //  Este componente se encarga de añadir un link a la lista de links y a la coleccion links
 import React from "react";
 import { Meteor } from "meteor/meteor";
-import Modal from "react-modal";
+import Modal from "react-modal"; //Este modulo nos sirve para añadir ventanas emergentes 
 
-//Exportamos AddLink como un componente de react
+//Exportamos AddLink y lo extendemos como componente de react
 export default class AddLink extends React.Component {
   //Heredamos las propiedades de todos los componentes
   constructor(props) {
@@ -15,7 +15,7 @@ export default class AddLink extends React.Component {
       lastVisitedAt: ""
     };
   }
-  //Creamos una para subir el Link a la coleccion links
+  //Creamos un evento para subir el Link a la coleccion links
   onSubmit(event) {
     //Cogemos el link que suministra el usuario
     const { url } = this.state;
@@ -93,7 +93,7 @@ export default class AddLink extends React.Component {
             </button>
           </form>
         </Modal>
-      </div>
+        </div>
     );
   }
 }

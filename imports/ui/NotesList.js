@@ -1,3 +1,4 @@
+//metodo no requerido para el ejemplo de la aplicacion mostrado en los videos.
 import React from "react";
 import { Notes } from "../api/notes";
 import { Tracker } from "meteor/tracker"; //importamos tracker, lo requerimos para autorun
@@ -20,7 +21,7 @@ export default class NotesList extends React.Component {
     });
   }
   componentWillUnmount() {
-    console.log("me fui alv ");
+    //Desmontamos el componente
     this.NoteTracker.stop();
   }
   renderNotesList() {

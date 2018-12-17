@@ -12,6 +12,9 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
+  "links.remove"(_id){
+    Links.remove({_id})
+  },
   "links.insert"(url, visitedCount, lastVisitedAt) {
     if (!this.userId) {
       throw new Meteor.Error("No autorizado");

@@ -1,3 +1,4 @@
+//componente encargado de mostrarse como header, donde se contendra un mensaje de inicio y el boton de salir.
 import React from "react";
 import { Accounts } from "meteor/accounts-base";
 

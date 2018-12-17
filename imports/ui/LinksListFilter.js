@@ -1,3 +1,4 @@
+// este componente se encarga de filtrar los items, entre no visibles y visibles
 import React from "react";
 import { Session } from "meteor/session";
 import { Tracker } from "meteor/tracker";
@@ -5,11 +6,13 @@ import { Tracker } from "meteor/tracker";
 export default class LinksListFilter extends React.Component {
   constructor(props) {
     super(props);
+    //definimos la visibilidad de un enlace por defecto de afirmativo
     this.state = {
-      showVisible: false
+      showVisible: true
     };
   }
   componentDidMount() {
+    //con esto, cada que apretamos el boton podemos actualizar automaticamente el estado de la visibilidad
     this.tracker = Tracker.autorun(() => {
       this.setState({
         showVisible: Session.get("showVisible")

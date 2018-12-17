@@ -1,3 +1,4 @@
+//Componente encargado de ser redireccionado cuando se entra a una pagina no definida por la pagina
 import React from "react";
 import { Link } from "react-router";
 
