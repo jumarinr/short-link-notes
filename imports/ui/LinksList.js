@@ -23,7 +23,14 @@ export default class LinksList extends React.Component {
       //nos suscribimos a la coleccion links, al suscribirnos logramos acceder a los datos de la coleccion para poder mostrarlos en la pagina
       Meteor.subscribe("links");
       //creamos una constante links que va a retornar los elementos de la coleccion con varios parametros, si es visible o no, si es visible se mostrara cuando el boton de "mostrar colecciones ocultas"
-      const links = Links.find({ visible: Session.get("showVisible") }).fetch();
+      const links = Links.find(
+        { visible: Session.get("showVisible") },
+        {
+          sort: {
+            lastVisitedAt: Session.get("order") ? Session.get("order") : -1
+          }
+        }
+      ).fetch();
       //actualizamos el estado del arreglo links que estaba vacio, ahora tendra los elementos de la coleccion
       this.setState({ links });
     });
@@ -50,12 +57,11 @@ export default class LinksList extends React.Component {
       return <LinksListItem key={link._id} shortUrl={shortUrl} {...link} />;
     });
   }
+
   render() {
     return (
       <div>
-        <FlipMove>
-          {this.renderLinksListItems()}
-        </FlipMove>
+        <FlipMove>{this.renderLinksListItems()}</FlipMove>
       </div>
     );
   }

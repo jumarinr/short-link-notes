@@ -6,7 +6,17 @@ import "../imports/startup/simple-schema-configuration";
 import { Links } from "../imports/api/links";
 
 Meteor.startup(() => {
-  /* 
+  // Some random async functions that deal with value
+  async function multiply(a, b) {
+    return a * b;
+  }
+  async function foo() {
+    var result = await multiply(2, 5);
+    console.log(result);
+    return result;
+  }
+  foo();
+  /*
     req - a Node.js IncomingMessage object with some extra properties. This argument can be used to get information about the incoming request.
     res - a Node.js ServerResponse object. Use this to write data that should be sent in response to the request, and call res.end() when you are done.
     next - a function. Calling this function will pass on the handling of this request to the next relevant handler.

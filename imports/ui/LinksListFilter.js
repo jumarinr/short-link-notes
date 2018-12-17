@@ -22,7 +22,10 @@ export default class LinksListFilter extends React.Component {
   componentWillUnmount() {
     this.tracker.stop();
   }
-
+  onChangeOrder(event) {
+    let ordenFinal = event.target.checked ? 1 : -1;
+    Session.set({ order: ordenFinal });
+  }
   render() {
     return (
       <div>
@@ -36,6 +39,14 @@ export default class LinksListFilter extends React.Component {
             }}
           />
           Mostrar links ocultos
+        </label>
+        <label className="checkbox">
+          <input
+            type="checkbox"
+            className="checkbox__box"
+            onChange={this.onChangeOrder.bind(this)}
+          />
+          Alternar orden
         </label>
       </div>
     );

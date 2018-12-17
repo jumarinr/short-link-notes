@@ -12,8 +12,8 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  "links.remove"(_id){
-    Links.remove({_id})
+  "links.remove"(_id) {
+    Links.remove({ _id });
   },
   "links.insert"(url, visitedCount, lastVisitedAt) {
     if (!this.userId) {

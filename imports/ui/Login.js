@@ -3,14 +3,14 @@ import React from "react";
 import { Link } from "react-router"; //con esto podemos redireccionar al componente que queramos
 import { Meteor } from "meteor/meteor";
 import { Session } from "meteor/session";
-
+import { Tracker } from "meteor/tracker";
 
 export default class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       error: "",
-      showPasswordLogin : "password",
+      showPasswordLogin: "password"
     };
   }
   componentDidMount() {
@@ -18,12 +18,22 @@ export default class Login extends React.Component {
 
     this.tracker = Tracker.autorun(() => {
       this.setState({
-        showPasswordLogin: Session.get("showPasswordLogin") ? Session.get("showPasswordLogin"): "password",
+        showPasswordLogin: Session.get("showPasswordLogin")
+          ? Session.get("showPasswordLogin")
+          : "password"
       });
     });
   }
   componentWillUnmount() {
     this.tracker.stop();
+  }
+  //este metodo se encarga de mostrar o no la contraseña suministrada por el usuario
+  onCheck(event) {
+    //definimos un valor que cambia, dicho valor depende del checkbox.
+    let valor = event.target.checked ? "text" : "password";
+    //si no esta seleccionada la checkbox, no me muestre la contraseña
+    //si esta checkeada la checkbox, debemos poner el texfield como text en vez de password
+    Session.set("showPasswordLogin", valor);
   }
   //este metodo recibe un evento, esto para evitar que se recargue la pagina. ademas es el encargado de subir las credenciales para que el usario pueda ingresar a la pagina
   onSubmit(event) {
@@ -61,24 +71,22 @@ export default class Login extends React.Component {
             />
             <button className="button">Ingresar</button>
           </form>
-          <label className="checkbox"> 
-            <input type="checkbox"  
-            className="checkbox__box"
-            onChange={(event)=>{
-              let valor;
-              if (!event.target.checked){
-                valor = "password"
-              }
-              else if (event.target.checked){
-                valor="text"
-              }
-              Session.set("showPasswordLogin", valor)
-            }}/>
+          <label className="checkbox">
+            <input
+              type="checkbox"
+              className="checkbox__box"
+              onChange={this.onCheck.bind(this)}
+            />
             Mostrar contraseña
-            </label>
-          <Link to="/signup" onClick={()=>{
-            Session.set("showPasswordLogin", "password")
-          }}>¿Necesitas una cuenta?</Link>
+          </label>
+          <Link
+            to="/signup"
+            onClick={() => {
+              Session.set("showPasswordLogin", "password");
+            }}
+          >
+            ¿Necesitas una cuenta?
+          </Link>
         </div>
       </div>
     );

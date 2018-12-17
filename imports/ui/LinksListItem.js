@@ -37,7 +37,9 @@ export default class LinksListItem extends React.Component {
     const visitMessage = this.props.visitedCount === 1 ? "visita" : "visitas";
     let visitedMessage = null;
     if (typeof this.props.lastVisitedAt === "number") {
-      visitedMessage = `- (visitada por ultima vez el ${moment(this.props.lastVisitedAt).format(" MM-DD-YYYY,  h:mm:ss a")})`
+      visitedMessage = `- (visitada por ultima vez el ${moment(
+        this.props.lastVisitedAt
+      ).format(" MM-DD-YYYY,  h:mm:ss a")})`;
     }
     return (
       <p className="item__message">
@@ -56,7 +58,9 @@ export default class LinksListItem extends React.Component {
         <a
           className="button button--pill button-link"
           href={this.props.shortUrl}
+          style={{ textDecoration: "none", textDecorationColor: "#000000" }}
           target="_blank"
+          onClick={this.renderStats.bind(this)}
         >
           {" "}
           Visitar
@@ -84,12 +88,10 @@ export default class LinksListItem extends React.Component {
         </button>
         <button
           className="button button--pill"
-          onClick={()=>{
-            let opcion = confirm("¿Esta seguro?")
-            if(opcion){
-              Meteor.call(
-                "links.remove",
-                this.props._id)
+          onClick={() => {
+            let opcion = confirm("¿Esta seguro?");
+            if (opcion) {
+              Meteor.call("links.remove", this.props._id);
             }
           }}
         >

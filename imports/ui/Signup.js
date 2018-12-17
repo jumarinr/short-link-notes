@@ -4,14 +4,13 @@ import { Link } from "react-router";
 import { Accounts } from "meteor/accounts-base";
 import { Session } from "meteor/session";
 
-
 export default class Signup extends React.Component {
   constructor(props) {
     super(props);
     //definimos el estado de error
     this.state = {
       error: "",
-      showPassword : "password",
+      showPassword: "password"
     };
   }
   componentDidMount() {
@@ -19,12 +18,21 @@ export default class Signup extends React.Component {
 
     this.tracker = Tracker.autorun(() => {
       this.setState({
-        showPassword: Session.get("showPassword") ? Session.get("showPassword"): "password",
+        showPassword: Session.get("showPassword")
+          ? Session.get("showPassword")
+          : "password"
       });
     });
   }
   componentWillUnmount() {
     this.tracker.stop();
+  }
+  //este metodo se encarga de mostrar o no la contraseña suministrada por el usuario
+  onCheck(event) {
+    //definimos un valor que cambia, dicho valor depende del checkbox.
+    //si no esta seleccionada la checkbox, no me muestre la contraseña; si lo esta, muestrela
+    let valor = event.target.checked ? "text" : "password";
+    Session.set("showPassword", valor);
   }
   //cuando el usuario ingrese, evitara ser cargada de nuevo la pagina y se subiran las credenciales si no se comete un error al hacerlo
   onSubmit(event) {
@@ -68,26 +76,24 @@ export default class Signup extends React.Component {
               placeholder="Contraseña"
             />
             <button className="button">Crear cuenta</button>
-            <label className="checkbox"> 
-            <input type="checkbox"  
-            className="checkbox__box"
-            onChange={(event)=>{
-              //con esta funcion, me encargo de mostrar o no la contraseña a traves de session y state, con session obtengo arriba el valor actual de mi contraseña y con set state la cambio a mi place del boton.
-              let valor;
-              if (!event.target.checked){
-                valor = "password"
-              }
-              else if (event.target.checked){
-                valor="text"
-              }
-              Session.set("showPassword", valor)
-            }}/>
-            Mostrar contraseña
+            <label className="checkbox">
+              <input
+                type="checkbox"
+                className="checkbox__box"
+                onChange={this.onCheck.bind(this)}
+              />
+              Mostrar contraseña
             </label>
-            <Link to="/" onClick={()=>{
-              //con esto obligo a que no muestre la contraseña cuando cambio de pagina
-              Session.set("showPassword", "password")
-            }}> ¿Ya tienes una cuenta?</Link>
+            <Link
+              to="/"
+              onClick={() => {
+                //con esto obligo a que no muestre la contraseña cuando cambio de pagina
+                Session.set("showPassword", "password");
+              }}
+            >
+              {" "}
+              ¿Ya tienes una cuenta?
+            </Link>
           </form>
         </div>
       </div>
