@@ -46,7 +46,7 @@ export default class LinksListFilter extends React.Component {
             className="checkbox__box"
             onChange={this.onChangeOrder.bind(this)}
           />
-          Alternar orden
+          Alternar orden de fecha
         </label>
       </div>
     );
